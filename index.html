@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dikafoods — Frullato Shakes &amp; Desserts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum:#2E1428;
+    --plum-soft:#3F1E39;
+    --mango:#FFB13D;
+    --berry:#FF5E82;
+    --cream:#FFF6E6;
+    --mint:#B9E5C9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--plum);
+    font-family:'Work Sans',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--berry);
+    font-weight:500;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem 6%;
+    background:rgba(255,246,230,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(46,20,40,0.08);
+  }
+  .brand{font-size:1.4rem;color:var(--plum);}
+  .brand span{color:var(--berry);}
+  .badge{
+    display:flex;align-items:center;gap:0.5rem;
+    font-size:0.72rem;color:#6B4E64;
+  }
+  .badge img{width:26px;height:26px;border-radius:50%;object-fit:cover;}
+  nav{display:flex;align-items:center;gap:2rem;font-size:0.95rem;font-weight:500;}
+  nav .links{display:flex;gap:2rem;}
+  nav a{position:relative;padding:0.2rem 0;}
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;
+    background:var(--mango);transition:width 0.25s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--plum);color:var(--cream);
+    padding:0.6rem 1.3rem;border-radius:999px;
+    font-size:0.9rem;font-weight:500;
+  }
+  .nav-cta:hover{background:var(--berry);}
+  @media(max-width:720px){ nav .links{display:none;} .badge{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    display:grid;grid-template-columns:1.1fr 0.9fr;
+    align-items:center;gap:2rem;
+    padding:5rem 6% 6rem;
+    position:relative;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,5.2vw,4.4rem);
+    line-height:1.03;
+    margin:0.9rem 0 1.3rem;
+  }
+  .hero h1 em{
+    font-style:normal;color:var(--berry);
+    position:relative;
+  }
+  .hero p.sub{
+    max-width:34ch;font-size:1.08rem;color:#4A2D45;margin-bottom:2rem;
+  }
+  .cta-row{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:0.85rem 1.7rem;border-radius:999px;
+    font-weight:600;font-size:0.98rem;transition:transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-primary{background:var(--mango);color:var(--plum);}
+  .btn-primary:hover{background:var(--berry);color:var(--cream);transform:translateY(-2px);}
+  .btn-outline{border:1.5px solid var(--plum);color:var(--plum);}
+  .btn-outline:hover{background:var(--plum);color:var(--cream);transform:translateY(-2px);}
+
+  /* swirl signature */
+  .swirl-wrap{position:relative;display:flex;align-items:center;justify-content:center;}
+  .swirl{width:min(420px,90%);animation:spin 26s linear infinite;}
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  .swirl-wrap:hover .swirl{animation-play-state:paused;}
+  .straw{
+    position:absolute;top:8%;left:52%;width:14px;height:62%;
+    background:linear-gradient(180deg,var(--berry),var(--mango));
+    border-radius:8px;transform:rotate(8deg);
+    box-shadow:0 6px 18px rgba(46,20,40,0.25);
+  }
+  @media(prefers-reduced-motion:reduce){.swirl{animation:none;}}
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;text-align:left;padding-top:3rem;}
+    .swirl-wrap{order:-1;margin-bottom:1rem;}
+    .swirl{width:230px;}
+  }
+
+  /* ---------- menu / offerings ---------- */
+  section{padding:5rem 6%;}
+  .section-head{max-width:52ch;margin-bottom:3rem;}
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-top:0.5rem;}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+  @media(max-width:900px){.cards{grid-template-columns:1fr;}}
+  .card{
+    background:var(--plum);color:var(--cream);
+    border-radius:28px;overflow:hidden;
+    transition:transform 0.25s ease;
+  }
+  .card:hover{transform:translateY(-6px);}
+  .card .photo{
+    width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  }
+  .card .card-body{padding:1.5rem 1.6rem 1.8rem;}
+  .card h3{font-size:1.3rem;margin-bottom:0.5rem;}
+  .card p{font-size:0.92rem;color:#EAD9E4;}
+  .card .flavors{
+    font-size:0.82rem;color:var(--mango);margin-top:0.7rem;line-height:1.6;
+  }
+  .card .seasonal-tag{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;
+    font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--plum);background:var(--mango);
+    padding:0.25rem 0.7rem;border-radius:999px;margin-bottom:0.6rem;
+  }
+
+  /* ---------- story ---------- */
+  .story{
+    background:var(--plum);color:var(--cream);
+    border-radius:36px;margin:0 6%;padding:4.5rem 6%;
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:3rem;align-items:center;
+  }
+  @media(max-width:900px){.story{grid-template-columns:1fr;}}
+  .story h2{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:1.1rem;}
+  .story p{color:#EAD9E4;margin-bottom:1rem;max-width:46ch;}
+  .story .quote{
+    font-family:'Fredoka',sans-serif;font-size:1.5rem;line-height:1.3;
+    color:var(--mango);border-left:3px solid var(--berry);padding-left:1.3rem;
+  }
+
+  /* ---------- visit ---------- */
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+  @media(max-width:900px){.visit-grid{grid-template-columns:1fr;}}
+  .info-block{
+    background:#fff;border-radius:24px;padding:2rem;
+    border:1.5px solid rgba(46,20,40,0.08);
+  }
+  .info-block h3{font-size:1.15rem;margin-bottom:0.8rem;}
+  .info-block p{color:#4A2D45;font-size:0.98rem;margin-bottom:0.4rem;}
+  .info-block .edit-note{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--berry);
+    margin-top:0.9rem;
+  }
+
+  footer{
+    padding:2.5rem 6%;text-align:center;
+    font-size:0.85rem;color:#7A5C74;
+  }
+  footer span{color:var(--berry);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Dika<span>foods</span></div>
+  <nav>
+    <div class="links">
+      <a href="#menu">Menu</a>
+      <a href="#story">Story</a>
+      <a href="#visit">Visit</a>
+    </div>
+    <div class="badge"><img src="images/frullato-logo.jpg" alt="Frullato logo">Official Frullato Partner</div>
+    <a class="nav-cta" href="#visit">Find us</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="label">Frullato Franchise · Gwalior</span>
+    <h1>Thick shakes,<br><em>real</em> fruit.</h1>
+    <p class="sub">Dikafoods brings the Frullato experience to Gwalior — blended fresh, piled high, and built to be shared.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#menu">See what we serve</a>
+      <a class="btn btn-outline" href="#visit">Visit us</a>
+    </div>
+  </div>
+  <div class="swirl-wrap">
+    <svg class="swirl" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="220" r="150" fill="var(--mango)" opacity="0.95"/>
+      <path d="M200 90 C300 90 350 160 340 230 C330 300 260 350 190 340 C120 330 70 270 80 200 C90 130 140 90 200 90 Z" fill="var(--berry)" opacity="0.9"/>
+      <ellipse cx="200" cy="220" rx="95" ry="95" fill="var(--cream)"/>
+      <path d="M150 190 Q200 150 250 190 Q220 230 200 260 Q180 230 150 190 Z" fill="var(--mango)"/>
+    </svg>
+    <div class="straw"></div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="section-head">
+    <span class="label">On the menu</span>
+    <h2>What's in the cup.</h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <img class="photo" src="images/anjeer.jpg" alt="Anjeer dessert cup">
+      <div class="card-body">
+        <h3>Dessert Cups</h3>
+        <p>Thick, layered dessert cups loaded with real toppings — nuts, fruit, and chocolate, made fresh daily.</p>
+        <div class="flavors">Anjeer · Banana Caramel · Banofee Nuts · Blueberry Double · Bournville Brownie · Bournville Ferrero · Brownie International · Brownie KitKat Cranberry</div>
+      </div>
+    </div>
+    <div class="card">
+      <img class="photo" src="images/classic-cold-coffee.jpg" alt="Classic cold coffee">
+      <div class="card-body">
+        <h3>Cold Coffees</h3>
+        <p>Chilled, creamy, and made to order — the perfect pick-me-up on a warm Gwalior afternoon.</p>
+        <div class="flavors">Classic · Caramel · Mocha</div>
+      </div>
+    </div>
+    <div class="card">
+      <img class="photo" src="images/mango-delight.jpg" alt="Mango Delight dessert cup">
+      <div class="card-body">
+        <span class="seasonal-tag">Seasonal</span>
+        <h3>Mango Delight</h3>
+        <p>Thick, creamy, and mango-rich — layered with fresh mango cubes. Limited time only.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="story">
+    <div>
+      <span class="label" style="color:var(--mango);">Our story</span>
+      <h2>Proud Frullato franchise partner in Gwalior.</h2>
+      <p>Dikafoods is the official Frullato franchise for Gwalior, serving the same thick, fruit-loaded shakes and dessert cups Frullato is known for — made fresh, every day.</p>
+    </div>
+    <div class="quote">"Every shake starts with real fruit — nothing here comes from a mix."</div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="section-head">
+    <span class="label">Come by</span>
+    <h2>Find us / say hello.</h2>
+  </div>
+  <div class="visit-grid">
+    <div class="info-block">
+      <h3>Location</h3>
+      <p>[Your shop address here]</p>
+      <p>[City, State, PIN code]</p>
+      <p>Open [10 AM – 10 PM], all days</p>
+      <div class="edit-note">Edit this block with your real address before publishing</div>
+    </div>
+    <div class="info-block">
+      <h3>Get in touch</h3>
+      <p>Phone: [Your phone number]</p>
+      <p>Instagram: [@yourhandle]</p>
+      <p>Email: [hello@dikafoods.com]</p>
+      <div class="edit-note">Edit this block with your real contact details</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Dikafoods · Official Frullato franchise partner, Gwalior · Made with <span>♥</span> and real fruit
+</footer>
+
+</body>
+</html>
